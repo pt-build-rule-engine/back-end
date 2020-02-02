@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const secrets = require('../../config/secrets')
 const UserModel = require('./users-model')
-const router = require('express').Router();
+const router = require('express').Router()
 
 router.post('/register', async (req, res, next) => {
   try {
@@ -12,7 +12,7 @@ router.post('/register', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-});
+})
 
 router.post('/login', async (req, res, next) => {
   try {
@@ -41,6 +41,6 @@ router.post('/login', async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-});
+})
 
-module.exports = router;
+module.exports = router
