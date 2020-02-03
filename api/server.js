@@ -1,8 +1,8 @@
 const express = require('express')
 const cors = require('cors')
-const logger = require('./middleware/logger')
-const notFound = require('./middleware/notFound')
-const error = require('./middleware/error')
+const logger = require('../middleware/logger')
+const notFound = require('../middleware/notFound')
+const error = require('../middleware/error')
 
 const server = express()
 
