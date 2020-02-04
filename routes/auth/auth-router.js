@@ -16,21 +16,21 @@ router.post('/register', async (req, res, next) => {
 
 router.post('/login', async (req, res, next) => {
   try {
-    const { username, password } = req.body
-    const user = await UserModel.findBy({ username }).first()
+    const { name, password } = req.body
+    const user = await UserModel.findBy({ name }).first()
 
     const passwordValid = await bcrypt.compare(password, user.password)
 
     if (user && passwordValid) {
       const token = jwt.sign({
         subject: user.id,
-        username: user.username
+        name: user.name
       }, secrets.jwt, {
         expiresIn: '7d'
       })
 
       res.status(200).json({
-        message: `welcome ${user.username}`,
+        message: `welcome ${user.name}`,
         token: token
       })
     } else {
