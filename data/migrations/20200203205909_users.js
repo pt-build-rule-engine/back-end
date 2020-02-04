@@ -17,7 +17,7 @@ exports.up = async function(knex) {
             .notNullable()
             .unique();
         users
-            .integer('phone #', 10)
+            .integer('phoneNumber', 10)
             .notNullable()
             .unique();
     });
