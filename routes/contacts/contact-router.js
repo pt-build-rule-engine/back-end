@@ -11,4 +11,16 @@ router.get('/contacts', async (req, res, next) => {
     }
 })
 
+router.get('/contacts/:id', async (req, res, next) => {
+    try {
+        const contact = await ContactModel.findById(req.params.id)
+
+        res.status(201).json(contact)
+    } catch (err) {
+        next(err)
+    }
+})
+
+//router.delete('/contacts')
+
 module.exports = router
