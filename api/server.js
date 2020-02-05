@@ -4,6 +4,7 @@ const logger = require('../middleware/logger')
 const notFound = require('../middleware/notFound')
 const error = require('../middleware/error')
 const authRouter = require('../routes/auth/auth-router')
+const contactsRouter = require('../routes/contacts/contact-router')
 
 const server = express()
 
@@ -15,7 +16,8 @@ server.use(express.json())
 //     res.json({ message: 'api deployed'})
 // })
 
-server.use('/', authRouter)
+server.use('/api/auth', authRouter)
+server.use('/api', contactsRouter)
 
 server.use(notFound())
 server.use(error())
