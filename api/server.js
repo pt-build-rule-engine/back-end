@@ -12,10 +12,6 @@ server.use(cors())
 server.use(logger())
 server.use(express.json())
 
-// server.get('/', (req, res) => {
-//     res.json({ message: 'api deployed'})
-// })
-
 server.use('/api/auth', authRouter)
 server.use('/api', contactsRouter)
 
