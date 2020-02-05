@@ -16,12 +16,23 @@ function findById(id) {
         .returning('*')
 }
 
-function update() {
-
+function update(changes, id) {
+    return db('contacts')
+        .where({ id })
+        .update(changes)
+        .then(id => {
+            if (id > 0) {
+                findById(id)
+            } else {
+                return null
+            }
+        })
 }
 
-function remove() {
-
+function remove(id) {
+    return db('contacts')
+        .where({ id })
+        .del()
 }
 
 module.exports = {
