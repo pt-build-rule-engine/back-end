@@ -13,7 +13,7 @@ server.use(logger())
 server.use(express.json())
 
 server.use('/api/auth', authRouter)
-server.use('/api', contactsRouter)
+server.use('/api/contacts', contactsRouter)
 
 server.use(notFound())
 server.use(error())

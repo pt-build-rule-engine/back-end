@@ -8,4 +8,5 @@ POST | /api/auth/register | creates a user using the data inside the request bod
 POST | /api/auth/login | login user with request body format: { email, password }. returns an object { message, token }
 GET | /api/contacts | returns array with all contacts in the database
 GET | /api/contacts/:id | returns contact by id
+PUT | /api/contacts/:id | updates contact
 DELETE | /api/contacts/:id | deletes contact by id
