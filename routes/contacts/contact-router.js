@@ -21,6 +21,14 @@ router.get('/contacts/:id', async (req, res, next) => {
     }
 })
 
-//router.delete('/contacts')
+router.delete('/contacts/:id', async (req, res, next) => {
+    try {
+        const deleted = await ContactModel.remove(req.params.id)
+
+        res.status(201).json(deleted)
+    } catch (err) {
+        next(err)
+    }
+})
 
 module.exports = router
