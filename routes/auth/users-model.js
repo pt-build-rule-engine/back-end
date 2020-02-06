@@ -1,6 +1,10 @@
 const bcrypt = require('bcryptjs')
 const db = require('../../data/dbConfig')
 
+function find() {
+    return db('users')
+}
+
 function findBy(filter) {
     return db('users')
         .where(filter)
@@ -19,6 +23,7 @@ async function add(user) {
 }
 
 module.exports = {
+    find,
     findBy,
     findById,
     add
