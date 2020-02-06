@@ -21,6 +21,16 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
+router.post('/', async (req, res, next) => {
+    try {
+        const contact = await ContactModel.add(req.body)
+
+        res.status(201).json(contact)
+    } catch (err) {
+        next(err)
+    }
+})
+
 router.put('/:id', async (req, res, next) => {
     const { id } = req.params
     const changes = req.body
