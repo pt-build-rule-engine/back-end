@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const ContactModel = require('./contact-model')
 
-router.get('/contacts', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
         const contacts = await ContactModel.find()
 
@@ -11,7 +11,7 @@ router.get('/contacts', async (req, res, next) => {
     }
 })
 
-router.get('/contacts/:id', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
     try {
         const contact = await ContactModel.findById(req.params.id)
 
@@ -21,7 +21,27 @@ router.get('/contacts/:id', async (req, res, next) => {
     }
 })
 
-router.delete('/contacts/:id', async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
+    const { id } = req.params
+    const changes = req.body
+
+    await ContactModel.findById(id)
+        .then(contact => {
+            if (contact) {
+                ContactModel.update(changes, id)
+                    .then(updatedContact => {
+                        res.json(updatedContact)
+                    })
+            } else {
+                res.status(404).json({ message: 'there is no contact with that id' })
+            }
+        })
+        .catch (err => {
+            next(err)
+        })
+})
+
+router.delete('/:id', async (req, res, next) => {
     try {
         const deleted = await ContactModel.remove(req.params.id)
 
