@@ -8,14 +8,8 @@ function find() {
 function findBy(filter) {
     return db('users')
         .where(filter)
-        .select('id', 'name', 'password')
+        .select('id', 'email', 'password')
 } 
-
-function findById(id) {
-    return db('users')
-        .where({ id })
-        .first('id', 'name')
-}
 
 async function add(user) {
     user.password = await bcrypt.hash(user.password, 14)
@@ -25,6 +19,5 @@ async function add(user) {
 module.exports = {
     find,
     findBy,
-    findById,
     add
 }
