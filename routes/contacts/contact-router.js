@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const ContactModel = require('./contact-model')
+const restricted = require('../../middleware/restricted')
 
-router.get('/', async (req, res, next) => {
+router.get('/', restricted(), async (req, res, next) => {
     try {
         const contacts = await ContactModel.find()
 
@@ -11,7 +12,7 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', restricted(), async (req, res, next) => {
     try {
         const contact = await ContactModel.findById(req.params.id)
 
@@ -21,7 +22,7 @@ router.get('/:id', async (req, res, next) => {
     }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', restricted(), async (req, res, next) => {
     try {
         const contact = await ContactModel.add(req.body)
 
@@ -31,7 +32,7 @@ router.post('/', async (req, res, next) => {
     }
 })
 
-router.put('/:id', async (req, res, next) => {
+router.put('/:id', restricted(), async (req, res, next) => {
     const { id } = req.params
     const changes = req.body
 
@@ -51,7 +52,7 @@ router.put('/:id', async (req, res, next) => {
         })
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', restricted(), async (req, res, next) => {
     try {
         const deleted = await ContactModel.remove(req.params.id)
 
